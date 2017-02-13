@@ -1,10 +1,10 @@
-# austin
 # .zshrc
+# vim: set tabstop=4 shiftwidth=4 noexpandtab
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation
-export ZSH=/home/austin/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
@@ -30,7 +30,7 @@ export MANPATH="/usr/local/man:$MANPATH"
 
 export LANG=en_US.UTF-8
 
-export EDITOR='vim'
+export EDITOR=vim
 export TERMINAL=termite
 export BROWSER=chromium
 
@@ -57,8 +57,10 @@ if which ruby &>/dev/null; then
 fi
 
 # rvm
-export PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+if [[ -d $HOME/.rvm ]]; then
+	export PATH="$PATH:$HOME/.rvm/bin"
+	[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+fi
 
 # android sdk
 if [[ -d "/opt/android-sdk" ]]; then
