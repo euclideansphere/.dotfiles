@@ -1,0 +1,16 @@
+[Added Associations]
+video/x-ms-wmv=mplayer.desktop;vlc.desktop;
+image/png=feh.desktop;
+image/jpeg=feh.desktop;
+audio/mpeg=vlc.desktop;mplayer.desktop;
+video/x-matroska=mplayer.desktop;
+text/plain=gvim.desktop;
+application/pdf=zathura-pdf-poppler.desktop;chromium.desktop;
+text/x-tex=atom.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=chromium.desktop;
+x-scheme-handler/mailto=chromium.desktop
+application/json=gvim.desktop;
+application/vnd.ms-htmlhelp=atom.desktop;wine-extension-chm.desktop;
+application/epub+zip=chromium.desktop;
+text/x-matlab=libreoffice-writer.desktop;
+application/x-shellscript=gvim.desktop;
