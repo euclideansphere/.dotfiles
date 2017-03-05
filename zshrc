@@ -13,7 +13,7 @@ DISABLE_AUTO_UPDATE="true"
 
 DISABLE_AUTO_TITLE="true"
 
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 
 COMPLETION_WAITING_DOTS="true"
 
@@ -82,6 +82,7 @@ fi
 # aliases
 alias freemem='sudo /sbin/sysctl -w vm.drop_caches=3'
 alias nosleep='xset s off -dpms'
+alias setbrightness='xrandr --output eDP-1 --brightness'
 
 # priviledged access
 _isroot=false
@@ -92,4 +93,5 @@ if ! $_isroot; then
 	alias reboot='sudo reboot'
 	alias pacman='sudo pacman'
 fi
+
 
