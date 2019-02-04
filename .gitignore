@@ -1,4 +1,7 @@
 
 *.swp
 *.bak
+.DS_store
+oh-my-zsh
+
 
