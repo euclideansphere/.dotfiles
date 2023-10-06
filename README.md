@@ -1,10 +1,4 @@
-# scriptable dotfiles for linux & macos
-
-## prerequisites
-1. zsh
-1. git
-1. sshd
-1. vim
+# dotfiles
 
 ## setup your ssh key first
 
@@ -17,9 +11,10 @@ ssh-add ~/.ssh/id_rsa
 cat ~/.ssh/id_rsa.pub
 ```
 
-## setup
-```bash
-git clone git@github.com:euclideansphere/.dotfiles.git ~/.dotfiles
-pushd ~/.dotfiles && ./setup.sh
-popd
+symlink things you want. periods removed from file nodes in this repo for vis so paths may not be accurate
+
+
+```sh
+ln -sv $pwd/$file $HOME/$file
 ```
+
