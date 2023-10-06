@@ -1,96 +1,112 @@
-# .zshrc
-# vim: set tabstop=4 shiftwidth=4 noexpandtab
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-export PATH=$HOME/bin:$HOME/.bin:/usr/local/bin:$PATH
-
-export DOTFILES="$HOME/.dotfiles"
-
-# Path to your oh-my-zsh installation
+# Path to your oh-my-zsh installation.
 export ZSH="$HOME/.dotfiles/oh-my-zsh"
 
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+export PATH="$HOME/bin:$PATH"
 
-DISABLE_AUTO_UPDATE="true"
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="eastwood"
 
-DISABLE_AUTO_TITLE="true"
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-ENABLE_CORRECTION="false"
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 COMPLETION_WAITING_DOTS="true"
 
-# optional alternative formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# command lines beginning with a space are ignored from hist
+HIST_IGNORE_SPACE="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-plugins=(
-	colored-man-pages
-	extract
-	git
-	vi-mode
-)
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# plugins
+plugins=(git vi-mode)
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export MANPATH="/usr/local/man:$MANPATH"
+# export MANPATH="/usr/local/man:$MANPATH"
 
+# You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-export EDITOR=vim
+# Preferred editor for local and remote sessions
+export EDITOR="vim"
+export BROWSER="$(xdg-settings get default-web-browser | sed 's/\.desktop//')"
 
-export SSH_KEY_PATH="~/.ssh/rsa_id"
+# Compilation flags
+export ARCHFLAGS="-arch x86_64"
 
-if which ruby &>/dev/null; then
-	GEM_DIR=$(ruby -rubygems -e 'puts Gem.user_dir')/bin
-	if [[ -d "$GEM_DIR" ]]; then
-		export PATH=$PATH:$GEM_DIR
-	fi
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
 
-	eval "$(hub alias -s)"
+alias pacman="sudo pacman"
 
-	[[ -s "/usr/local/share/chruby/chruby.sh" ]] && source /usr/local/share/chruby/chruby.sh
-	[[ -s "/usr/local/share/chruby/auto.sh" ]] && source /usr/local/share/chruby/auto.sh
-	#chruby ruby-2.6.1
+# git
+alias g="git"
+alias gs="git status"
+alias gb="git branch"
 
-	# rvm
-	if [[ -d $HOME/.rvm ]]; then
-		# add rvm to path for scripting
-		export PATH="$PATH:$HOME/.rvm/bin"
-		#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-	fi
-fi
+# ssh-agent
+eval "#(ssh-agent -s" > /dev/null
 
+# gpg
+export GPG_TTY=#(tty)
 
-if [ "${uname}" = "Darwin" ]; then
-
-else
-	export TERMINAL=termite
-	export BROWSER=firefox-developer-edition
-
-	# Compilation flags
-	export ARCHFLAGS="-arch x86_64"
-
-	# chrome
-	if which google-chrome-stable &>/dev/null; then
-		export CHROME_BIN=/usr/bin/google-chrome-stable
-	elif which chromium &>/dev/null; then
-		export CHROME_BIN=/usr/bin/chromium
-	fi
-
-	# aliases
-	alias freemem='sudo /sbin/sysctl -w vm.drop_caches=3'
-	alias nosleep='xset s off -dpms'
-	alias setbrightness='xrandr --output eDP-1 --brightness'
-
-	# priviledged access
-	_isroot=false
-	[[ $UID -eq 0 ]] && _isroot=true
-	if ! $_isroot; then
-		alias sudo='sudo '
-		alias svim='sudo vim'
-		alias reboot='sudo reboot'
-		alias pacman='sudo pacman'
-	fi
-fi
-
-source $ZSH/oh-my-zsh.sh
+# nvm
+source /usr/share/nvm/init-nvm.sh
 
